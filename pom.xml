@@ -109,13 +109,6 @@
 			<artifactId>objenesis</artifactId>
 			<version>${objenesis.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
 		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -219,6 +212,22 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.1</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.jadler</groupId>
+			<artifactId>jadler-all</artifactId>
+			<version>1.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!--  Needs to be after Jadler to make sure it sees the Servlet 3.0 dependency pulled in for testing -->
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
