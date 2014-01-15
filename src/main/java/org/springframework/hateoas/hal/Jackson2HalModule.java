@@ -28,6 +28,7 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkTemplate;
 import org.springframework.hateoas.RelProvider;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceSupport;
@@ -84,6 +85,7 @@ public class Jackson2HalModule extends SimpleModule {
 		super("json-hal-module", new Version(1, 0, 0, null, "org.springframework.hateoas", "spring-hateoas"));
 
 		setMixInAnnotation(Link.class, LinkMixin.class);
+		setMixInAnnotation(LinkTemplate.class, LinkTemplateMixin.class);
 		setMixInAnnotation(ResourceSupport.class, ResourceSupportMixin.class);
 		setMixInAnnotation(Resources.class, ResourcesMixin.class);
 	}
