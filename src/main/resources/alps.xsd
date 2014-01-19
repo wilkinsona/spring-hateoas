@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/alps"
+	xmlns:alps="http://www.example.org/alps" elementFormDefault="qualified">
+
+	<xsd:element name="alps">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="doc" type="alps:doc" minOccurs="0" />
+				<xsd:element name="ext" type="alps:ext" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" default="1.0" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="descriptor">
+		
+		<xsd:sequence>
+			<xsd:element name="doc" type="alps:doc" minOccurs="0" />
+			<xsd:element name="ext"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" />
+		<xsd:attribute name="href" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="doc">
+		<xsd:attribute name="href" type="xsd:anyURI" />
+		<xsd:attribute name="format" type="alps:format" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="ext">
+		<xsd:attribute name="href" type="xsd:anyURI" />
+		<xsd:attribute name="value" type="xsd:anySimpleType" />
+	</xsd:complexType>
+	
+	<xsd:simpleType name="format">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="text" />
+			<xsd:enumeration value="html" />
+			<xsd:enumeration value="asciidoc" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
