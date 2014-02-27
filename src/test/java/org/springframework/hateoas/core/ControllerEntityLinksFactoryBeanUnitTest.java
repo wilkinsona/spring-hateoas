@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.RootBeanDefinition;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.hateoas.core.ControllerEntityLinksUnitTest.Person;
 import org.springframework.hateoas.core.ControllerEntityLinksUnitTest.SampleController;
@@ -56,12 +56,15 @@ public class ControllerEntityLinksFactoryBeanUnitTest {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		factory.registerBeanDefinition("controller", new RootBeanDefinition(SampleController.class));
 
-		ApplicationContext context = new GenericApplicationContext(factory);
+		AbstractApplicationContext  context = new GenericApplicationContext(factory);
 
 		ControllerEntityLinksFactoryBean builder = new ControllerEntityLinksFactoryBean();
 		builder.setAnnotation(Controller.class);
 		builder.setLinkBuilderFactory(new ControllerLinkBuilderFactory());
 		builder.setApplicationContext(context);
+		
+		context.refresh();
+		
 		builder.afterPropertiesSet();
 
 		ControllerEntityLinks entityLinks = builder.getObject();
